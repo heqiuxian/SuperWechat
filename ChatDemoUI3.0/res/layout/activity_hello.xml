@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/activity_hello"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/black_deep">
+
+    <ImageView
+        android:id="@+id/iv_splash_logo"
+        android:layout_width="90dp"
+        android:layout_height="90dp"
+        android:src="@drawable/icon_logo"
+        android:layout_marginTop="90dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
+
+    <Button
+        android:id="@+id/bt_hello_login"
+        android:layout_width="140dp"
+        android:layout_height="40dp"
+        android:text="@string/login"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        android:background="@color/green"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="92dp" />
+
+    <Button
+        android:id="@+id/bt_hello_register"
+        android:text="@string/register"
+        android:layout_width="140dp"
+        android:layout_height="40dp"
+        android:layout_marginBottom="25dp"
+        android:textColor="@color/black"
+        android:textSize="20dp"
+        android:background="@color/gray"
+        android:layout_alignParentBottom="true"
+        android:layout_alignLeft="@+id/bt_hello_login"
+        android:layout_alignStart="@+id/bt_hello_login" />
+
+</RelativeLayout>
