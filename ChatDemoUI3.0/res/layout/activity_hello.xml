@@ -36,7 +36,6 @@
         android:textSize="20dp"
         android:background="@color/gray"
         android:layout_alignParentBottom="true"
-        android:layout_alignLeft="@+id/bt_hello_login"
-        android:layout_alignStart="@+id/bt_hello_login" />
+        android:layout_centerHorizontal="true"/>
 
 </RelativeLayout>
