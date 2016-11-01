@@ -79,6 +79,26 @@
                 android:background="@drawable/em_unread_dot"
                 android:visibility="visible" />
         </RelativeLayout>
+        <RelativeLayout
+            android:id="@+id/rl_find"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1" >
+
+            <Button
+                android:id="@+id/btn_find"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/em_main_bottom_item_bg"
+                android:drawableTop="@drawable/em_tab_find_bg"
+                android:onClick="onTabClicked"
+                android:paddingBottom="2dip"
+                android:paddingTop="7dip"
+                android:scaleType="matrix"
+                android:text="@string/setting"
+                android:textColor="@color/em_main_botton_text_color"
+                android:textSize="12sp" />
+        </RelativeLayout>
 
         <RelativeLayout
             android:id="@+id/btn_container_setting"
@@ -91,12 +111,12 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="@drawable/em_main_bottom_item_bg"
-                android:drawableTop="@drawable/em_tab_setting_bg"
+                android:drawableTop="@drawable/em_tab_profile_bg"
                 android:onClick="onTabClicked"
                 android:paddingBottom="2dip"
                 android:paddingTop="7dip"
                 android:scaleType="matrix"
-                android:text="@string/setting"
+                android:text="@string/profile"
                 android:textColor="@color/em_main_botton_text_color"
                 android:textSize="12sp" />
         </RelativeLayout>
