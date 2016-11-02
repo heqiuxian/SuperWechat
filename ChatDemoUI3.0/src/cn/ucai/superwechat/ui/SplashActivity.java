@@ -6,8 +6,11 @@ import android.view.animation.AlphaAnimation;
 import android.widget.RelativeLayout;
 
 import com.hyphenate.chat.EMClient;
+import com.hyphenate.easeui.domain.User;
+
 import cn.ucai.superwechat.SuperWechatHelper;
 import cn.ucai.superwechat.R;
+import cn.ucai.superwechat.db.UserDao;
 
 /**
  * 开屏页
@@ -16,6 +19,7 @@ import cn.ucai.superwechat.R;
 public class SplashActivity extends BaseActivity {
 
 	private static final int sleepTime = 2000;
+	SplashActivity mContext;
 
 	@Override
 	protected void onCreate(Bundle arg0) {
@@ -29,6 +33,7 @@ public class SplashActivity extends BaseActivity {
 		AlphaAnimation animation = new AlphaAnimation(0.3f, 1.0f);
 		animation.setDuration(1500);
 		rootLayout.startAnimation(animation);
+		mContext=this;
 	}
 
 	@Override
@@ -42,7 +47,11 @@ public class SplashActivity extends BaseActivity {
 					long start = System.currentTimeMillis();
 					EMClient.getInstance().groupManager().loadAllGroups();
 					EMClient.getInstance().chatManager().loadAllConversations();
-					long costTime = System.currentTimeMillis() - start;
+
+					UserDao userDao=new UserDao(mContext);
+                    User user = userDao.getUser(EMClient.getInstance().getCurrentUser());
+                    SuperWechatHelper.getInstance().setCurrentUser(user);
+                    long costTime = System.currentTimeMillis() - start;
 					//wait
 					if (sleepTime - costTime > 0) {
 						try {
