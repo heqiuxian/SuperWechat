@@ -4,11 +4,13 @@
     android:layout_height="match_parent"
     android:background="#eff2f6"
     android:orientation="vertical" >
+    <include layout="@layout/view_title"/>
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="0dip"
-        android:layout_weight="1" >
+        android:layout_weight="1"
+        android:layout_marginTop="10dp">
 
         <RelativeLayout
             android:id="@+id/rl_username"
@@ -28,7 +30,7 @@
                 android:src="@drawable/em_icon_account" />
 
             <EditText
-                android:id="@+id/username"
+                android:id="@+id/et_username"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_centerVertical="true"
@@ -60,7 +62,7 @@
                 android:src="@drawable/em_icon_pwd" />
 
             <EditText
-                android:id="@+id/password"
+                android:id="@+id/et_password"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_centerVertical="true"
@@ -82,6 +84,7 @@
             android:orientation="horizontal" >
 
             <Button
+                android:id="@+id/bt_register"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dip"
@@ -97,6 +100,7 @@
                 android:textSize="18sp" />
 
             <Button
+                android:id="@+id/bt_login"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dip"

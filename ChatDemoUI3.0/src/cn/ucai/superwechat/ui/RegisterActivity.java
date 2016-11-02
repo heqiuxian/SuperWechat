@@ -179,6 +179,7 @@ public class RegisterActivity extends BaseActivity {
                             // save current user
                             SuperWechatHelper.getInstance().setCurrentUserName(username);
                             Toast.makeText(getApplicationContext(), getResources().getString(R.string.Registered_successfully), Toast.LENGTH_SHORT).show();
+                            MFGT.gotoLogin(mContext);
                             MFGT.finish(mContext);
                         }
                     });
