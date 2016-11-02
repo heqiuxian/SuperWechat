@@ -35,13 +35,12 @@ import com.hyphenate.easeui.utils.EaseCommonUtils;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-import cn.ucai.superwechat.I;
 import cn.ucai.superwechat.R;
 import cn.ucai.superwechat.SuperWechatApplication;
 import cn.ucai.superwechat.SuperWechatHelper;
 import cn.ucai.superwechat.data.NetDao;
 import cn.ucai.superwechat.data.OkHttpUtils;
-import cn.ucai.superwechat.db.SuperWechatDBManageroo;
+import cn.ucai.superwechat.db.SuperWechatDBManager;
 import cn.ucai.superwechat.utils.L;
 import cn.ucai.superwechat.utils.MD5;
 import cn.ucai.superwechat.utils.MFGT;
@@ -197,7 +196,7 @@ public class LoginActivity extends BaseActivity {
     private void loginEMServer() {
         // After logout，the DemoDB may still be accessed due to async callback, so the DemoDB will be re-opened again.
         // close it before login to make sure DemoDB not overlap
-        SuperWechatDBManageroo.getInstance().closeDB();
+        SuperWechatDBManager.getInstance().closeDB();
 
         // reset current user name before login
         SuperWechatHelper.getInstance().setCurrentUserName(currentUsername);

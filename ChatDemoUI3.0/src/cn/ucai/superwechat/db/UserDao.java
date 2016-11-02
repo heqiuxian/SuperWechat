@@ -20,6 +20,7 @@ import android.content.Context;
 
 import cn.ucai.superwechat.domain.RobotUser;
 import com.hyphenate.easeui.domain.EaseUser;
+import com.hyphenate.easeui.domain.User;
 
 public class UserDao {
 	public static final String TABLE_NAME = "uers";
@@ -35,6 +36,16 @@ public class UserDao {
 	public static final String ROBOT_COLUMN_NAME_ID = "username";
 	public static final String ROBOT_COLUMN_NAME_NICK = "nick";
 	public static final String ROBOT_COLUMN_NAME_AVATAR = "avatar";
+
+
+	public static final String USER_TABLE_NAME="t_superwechat_user";
+	public static final String USER_COLUMN_NAME="m_user_name";
+	public static final String USER_COLUMN_NICK="m_user_nick";
+	public static final String USER_COLUMN_AVATAR_ID="m_user_avatar_id";
+	public static final String USER_COLUMN_AVATAR_PATH="m_user_avatar_path";
+	public static final String USER_COLUMN_AVATAR_SUFFIX="m_user_avatar_suffix";
+	public static final String USER_COLUMN_AVATAR_TYPE="m_user_avatar_type";
+	public static final String USER_COLUMN_AVATAR_LASTUPDATE_TIME="m_user_avatar_lastupdate_time";
 	
 	
 	public UserDao(Context context) {
@@ -46,56 +57,65 @@ public class UserDao {
 	 * @param contactList
 	 */
 	public void saveContactList(List<EaseUser> contactList) {
-	    SuperWechatDBManageroo.getInstance().saveContactList(contactList);
+	    SuperWechatDBManager.getInstance().saveContactList(contactList);
 	}
 
 	/**
 	 * get contact list
-	 * 
+	 *
 	 * @return
 	 */
 	public Map<String, EaseUser> getContactList() {
-		
-	    return SuperWechatDBManageroo.getInstance().getContactList();
+
+	    return SuperWechatDBManager.getInstance().getContactList();
 	}
-	
+
 	/**
 	 * delete a contact
 	 * @param username
 	 */
 	public void deleteContact(String username){
-	    SuperWechatDBManageroo.getInstance().deleteContact(username);
+	    SuperWechatDBManager.getInstance().deleteContact(username);
 	}
-	
+
 	/**
 	 * save a contact
 	 * @param user
 	 */
 	public void saveContact(EaseUser user){
-	    SuperWechatDBManageroo.getInstance().saveContact(user);
+	    SuperWechatDBManager.getInstance().saveContact(user);
 	}
-	
+
 	public void setDisabledGroups(List<String> groups){
-	    SuperWechatDBManageroo.getInstance().setDisabledGroups(groups);
+	    SuperWechatDBManager.getInstance().setDisabledGroups(groups);
     }
-    
-    public List<String>  getDisabledGroups(){       
-        return SuperWechatDBManageroo.getInstance().getDisabledGroups();
+
+    public List<String>  getDisabledGroups(){
+        return SuperWechatDBManager.getInstance().getDisabledGroups();
     }
-    
+
     public void setDisabledIds(List<String> ids){
-        SuperWechatDBManageroo.getInstance().setDisabledIds(ids);
+        SuperWechatDBManager.getInstance().setDisabledIds(ids);
     }
-    
+
     public List<String> getDisabledIds(){
-        return SuperWechatDBManageroo.getInstance().getDisabledIds();
+        return SuperWechatDBManager.getInstance().getDisabledIds();
     }
-    
+
     public Map<String, RobotUser> getRobotUser(){
-    	return SuperWechatDBManageroo.getInstance().getRobotList();
+    	return SuperWechatDBManager.getInstance().getRobotList();
     }
-    
+
     public void saveRobotUser(List<RobotUser> robotList){
-    	SuperWechatDBManageroo.getInstance().saveRobotList(robotList);
+    	SuperWechatDBManager.getInstance().saveRobotList(robotList);
     }
+	public boolean saveUser(User user){
+		return SuperWechatDBManager.getInstance().saveUser(user);
+	}
+	public User getUser(String username){
+		return SuperWechatDBManager.getInstance().getUser(username);
+	}
+	public boolean updateUser(User user){
+		return SuperWechatDBManager.getInstance().updateUser(user);
+	}
 }

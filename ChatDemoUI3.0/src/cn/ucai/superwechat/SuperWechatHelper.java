@@ -26,7 +26,7 @@ import com.hyphenate.chat.EMMessage.Type;
 import com.hyphenate.chat.EMOptions;
 import com.hyphenate.chat.EMTextMessageBody;
 
-import cn.ucai.superwechat.db.SuperWechatDBManageroo;
+import cn.ucai.superwechat.db.SuperWechatDBManager;
 import cn.ucai.superwechat.db.InviteMessgeDao;
 import cn.ucai.superwechat.db.UserDao;
 import cn.ucai.superwechat.domain.EmojiconExampleGroupData;
@@ -1229,7 +1229,7 @@ public class SuperWechatHelper {
         setContactList(null);
         setRobotList(null);
         getUserProfileManager().reset();
-        SuperWechatDBManageroo.getInstance().closeDB();
+        SuperWechatDBManager.getInstance().closeDB();
     }
 
     public void pushActivity(Activity activity) {
