@@ -242,6 +242,9 @@ public class LoginActivity extends BaseActivity {
         if (autoLogin) {
             return;
         }
+        if(SuperWechatHelper.getInstance().getCurrentUsernName()!=null){
+            etUsername.setText(SuperWechatHelper.getInstance().getCurrentUsernName());
+        }
     }
 
     @OnClick({R.id.iv_title_back, R.id.bt_register, R.id.bt_login})
