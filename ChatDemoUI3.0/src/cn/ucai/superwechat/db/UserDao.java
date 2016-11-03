@@ -118,4 +118,14 @@ public class UserDao {
 	public boolean updateUser(User user){
 		return SuperWechatDBManager.getInstance().updateUser(user);
 	}
+	public void saveAppContact(User user){
+		SuperWechatDBManager.getInstance().saveAppContact(user);
+	}
+	public Map<String,User> getAppContactList() {
+
+		return SuperWechatDBManager.getInstance().getAppContactList();
+	}
+	public void saveAppContactList(List<User> contactList){
+		SuperWechatDBManager.getInstance().saveAppContactList(contactList);
+	}
 }
