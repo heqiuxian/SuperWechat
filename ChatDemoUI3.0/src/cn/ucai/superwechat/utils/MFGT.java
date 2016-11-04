@@ -10,7 +10,9 @@ import com.baidu.platform.comapi.map.A;
 import cn.ucai.superwechat.R;
 import cn.ucai.superwechat.ui.LoginActivity;
 import cn.ucai.superwechat.ui.MainActivity;
+import cn.ucai.superwechat.ui.ProfileFragment;
 import cn.ucai.superwechat.ui.RegisterActivity;
+import cn.ucai.superwechat.ui.SettingsActivity;
 
 
 public class MFGT {
@@ -38,4 +40,7 @@ public class MFGT {
         startActivity(context, RegisterActivity.class);
     }
 
+    public static void gotoSetting(Activity context) {
+        startActivity(context, SettingsActivity.class);
+    }
 }

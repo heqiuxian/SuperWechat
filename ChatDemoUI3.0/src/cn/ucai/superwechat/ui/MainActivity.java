@@ -120,7 +120,7 @@ public class MainActivity extends BaseActivity implements DMTabHost.OnCheckedCha
         UserDao userDao = new UserDao(this);
         conversationListFragment = new ConversationListFragment();
         /*contactListFragment = new ContactListFragment();
-		SettingsFragment settingFragment = new SettingsFragment();
+		SettingsActivity settingFragment = new SettingsActivity();
 		fragments = new Fragment[] { conversationListFragment, contactListFragment, settingFragment};
 
 		getSupportFragmentManager().beginTransaction().add(R.id.fragment_container, conversationListFragment)
