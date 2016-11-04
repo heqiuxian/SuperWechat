@@ -5,6 +5,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
     <include android:id="@+id/layout_title" layout="@layout/view_title"/>
+    <cn.ucai.superwechat.widget.MFViewPager
+        android:id="@+id/layout_viewpage"
+        android:layout_below="@id/layout_title"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingBottom="48dp">
+    </cn.ucai.superwechat.widget.MFViewPager>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -56,15 +63,5 @@
 
         </cn.ucai.superwechat.widget.DMTabHost>
     </LinearLayout>
-
-    <cn.ucai.superwechat.widget.MFViewPager
-        android:id="@+id/layout_viewpage"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_above="@+id/linearLayout">
-    </cn.ucai.superwechat.widget.MFViewPager>
 
 </RelativeLayout>

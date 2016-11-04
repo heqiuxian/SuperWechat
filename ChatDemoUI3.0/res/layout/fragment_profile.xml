@@ -1,0 +1,110 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <!-- TODO: Update blank fragment layout -->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white">
+        <ImageView
+            android:id="@+id/iv_profile_avatar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/default_avatar"
+            />
+        <TextView
+            android:id="@+id/tv_profile_nick"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="鳄鱼"
+            android:textSize="18sp"
+            android:layout_marginLeft="10dp"
+            android:layout_toRightOf="@id/iv_profile_avatar"
+            android:layout_marginTop="10dp"
+            />
+        <TextView
+            android:id="@+id/tv_profile_wxh"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="微信号..."
+            android:layout_marginLeft="10dp"
+            android:layout_toRightOf="@id/iv_profile_avatar"
+            android:layout_marginTop="40dp"
+            />
+    </RelativeLayout>
+    <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/txt_pengyouquan"
+                style="@style/list_txt_Style"
+                android:layout_marginTop="20dp"
+                android:drawableLeft="@drawable/icon_me_photo"
+                android:text="@string/profile_txt_album" />
+
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="0.3dp"
+                android:background="@color/black3" />
+
+
+            <TextView
+                android:id="@+id/txt_saoyisao"
+                style="@style/list_txt_Style"
+                android:drawableLeft="@drawable/icon_me_collect"
+                android:text="@string/profile_txt_collect" />
+
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="0.3dp"
+                android:background="@color/black3" />
+
+            <TextView
+                android:id="@+id/tv_profile_money"
+                style="@style/list_txt_Style"
+                android:layout_marginTop="20dp"
+                android:drawableLeft="@drawable/icon_me_money"
+                android:text="@string/profile_txt_money" />
+
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="0.3dp"
+                android:background="@color/black3" />
+
+            <TextView
+                android:id="@+id/txt_nearby"
+                style="@style/list_txt_Style"
+                android:layout_marginTop="20dp"
+                android:drawableLeft="@drawable/icon_me_smail"
+                android:text="@string/profile_txt_smail" />
+
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="0.3dp"
+                android:background="@color/black3" />
+
+            <TextView
+                android:id="@+id/tv_profile_setting"
+                style="@style/list_txt_Style"
+                android:layout_marginTop="20dp"
+                android:drawableLeft="@drawable/icon_me_setting"
+                android:text="@string/profile_txt_setting" />
+
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="0.3dp"
+                android:background="@color/black3" />
+
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>
