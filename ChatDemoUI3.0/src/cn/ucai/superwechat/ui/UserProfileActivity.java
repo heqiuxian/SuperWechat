@@ -25,19 +25,27 @@ import com.hyphenate.EMValueCallBack;
 import com.hyphenate.easeui.domain.EaseUser;
 import com.hyphenate.easeui.domain.User;
 import com.hyphenate.easeui.utils.EaseCommonUtils;
+import com.hyphenate.easeui.utils.EaseImageUtils;
 import com.hyphenate.easeui.utils.EaseUserUtils;
 
+import java.io.BufferedOutputStream;
 import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import cn.ucai.superwechat.I;
 import cn.ucai.superwechat.R;
 import cn.ucai.superwechat.SuperWechatHelper;
 import cn.ucai.superwechat.bean.Result;
 import cn.ucai.superwechat.data.NetDao;
 import cn.ucai.superwechat.data.OkHttpUtils;
 import cn.ucai.superwechat.utils.CommonUtils;
+import cn.ucai.superwechat.utils.MFGT;
 import cn.ucai.superwechat.utils.ResultUtils;
 
 public class UserProfileActivity extends BaseActivity implements OnClickListener {
@@ -199,7 +207,6 @@ public class UserProfileActivity extends BaseActivity implements OnClickListener
     }
 
     private void updateLocatUser(User u) {
-        user=u;
         SuperWechatHelper.getInstance().saveAppContact(u);
         EaseUserUtils.setCurrentAppUserNick(tvUserinfoNick);
     }
@@ -215,13 +222,38 @@ public class UserProfileActivity extends BaseActivity implements OnClickListener
                 break;
             case REQUESTCODE_CUTTING:
                 if (data != null) {
-                    setPicToView(data);
+                    updateAppUserAvatar(data);
+                    //setPicToView(data);
                 }
                 break;
             default:
                 break;
         }
         super.onActivityResult(requestCode, resultCode, data);
+    }
+
+    private void updateAppUserAvatar(final Intent picData) {
+        File file=saveBitmapFile(picData);
+        NetDao.updateAvatar(this, user.getMUserName(), file, new OkHttpUtils.OnCompleteListener<String>() {
+            @Override
+            public void onSuccess(String s) {
+                if(s!=null){
+                    Result result = ResultUtils.getListResultFromJson(s, User.class);
+                    if(result!=null&&result.isRetMsg()){
+                        setPicToView(picData);
+                    }else {
+                        CommonUtils.showLongToast(R.string.toast_updatephoto_fail);
+                    }
+                }else {
+                    CommonUtils.showLongToast(R.string.toast_updatephoto_fail);
+                }
+            }
+
+            @Override
+            public void onError(String error) {
+                CommonUtils.showLongToast(R.string.toast_updatephoto_fail);
+            }
+        });
     }
 
     public void startPhotoZoom(Uri uri) {
@@ -292,6 +324,7 @@ public class UserProfileActivity extends BaseActivity implements OnClickListener
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.iv_title_back:
+                MFGT.finish(this);
                 break;
             case R.id.layout_userinfo_avatar:
                 uploadHeadPhoto();
@@ -321,5 +354,23 @@ public class UserProfileActivity extends BaseActivity implements OnClickListener
                 CommonUtils.showLongToast("微信号不能修改");
                 break;
         }
+    }
+    public File saveBitmapFile(Intent picdata){
+        Bundle extras=picdata.getExtras();
+        if(extras!=null){
+            Bitmap bitmap=extras.getParcelable("data");
+            String imagePath=EaseImageUtils.getImagePath(user.getMUserName()+ I.AVATAR_SUFFIX_JPG);
+            File file=new File(imagePath);//将要保存图片的路径
+            try {
+                BufferedOutputStream bos=new BufferedOutputStream(new FileOutputStream(file));
+                bitmap.compress(Bitmap.CompressFormat.PNG,100,bos);
+                bos.flush();
+                bos.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            return file;
+        }
+        return null;
     }
 }
