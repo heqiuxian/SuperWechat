@@ -45,6 +45,7 @@ import cn.ucai.superwechat.bean.Result;
 import cn.ucai.superwechat.data.NetDao;
 import cn.ucai.superwechat.data.OkHttpUtils;
 import cn.ucai.superwechat.utils.CommonUtils;
+import cn.ucai.superwechat.utils.L;
 import cn.ucai.superwechat.utils.MFGT;
 import cn.ucai.superwechat.utils.ResultUtils;
 
@@ -233,24 +234,32 @@ public class UserProfileActivity extends BaseActivity implements OnClickListener
     }
 
     private void updateAppUserAvatar(final Intent picData) {
+        dialog = ProgressDialog.show(this, getString(R.string.dl_update_photo), getString(R.string.dl_waiting));
         File file=saveBitmapFile(picData);
         NetDao.updateAvatar(this, user.getMUserName(), file, new OkHttpUtils.OnCompleteListener<String>() {
             @Override
             public void onSuccess(String s) {
                 if(s!=null){
-                    Result result = ResultUtils.getListResultFromJson(s, User.class);
+                    L.e("s========="+s);
+                    Result result = ResultUtils.getResultFromJson(s, User.class);
+                    L.e("result================="+result.toString());
                     if(result!=null&&result.isRetMsg()){
+                        User u=(User) result.getRetData();
+                        SuperWechatHelper.getInstance().saveAppContact(u);
                         setPicToView(picData);
                     }else {
+                        dialog.dismiss();
                         CommonUtils.showLongToast(R.string.toast_updatephoto_fail);
                     }
                 }else {
+                    dialog.dismiss();
                     CommonUtils.showLongToast(R.string.toast_updatephoto_fail);
                 }
             }
 
             @Override
             public void onError(String error) {
+                dialog.dismiss();
                 CommonUtils.showLongToast(R.string.toast_updatephoto_fail);
             }
         });
@@ -280,13 +289,16 @@ public class UserProfileActivity extends BaseActivity implements OnClickListener
             Bitmap photo = extras.getParcelable("data");
             Drawable drawable = new BitmapDrawable(getResources(), photo);
             ivUserinfoAvatar.setImageDrawable(drawable);
-            uploadUserAvatar(Bitmap2Bytes(photo));
+            dialog.dismiss();
+            Toast.makeText(UserProfileActivity.this, getString(R.string.toast_updatephoto_success),
+                    Toast.LENGTH_SHORT).show();
+          //  uploadUserAvatar(Bitmap2Bytes(photo));
         }
 
     }
 
     private void uploadUserAvatar(final byte[] data) {
-        dialog = ProgressDialog.show(this, getString(R.string.dl_update_photo), getString(R.string.dl_waiting));
+     //   dialog = ProgressDialog.show(this, getString(R.string.dl_update_photo), getString(R.string.dl_waiting));
         new Thread(new Runnable() {
 
             @Override
@@ -310,7 +322,7 @@ public class UserProfileActivity extends BaseActivity implements OnClickListener
             }
         }).start();
 
-        dialog.show();
+        //dialog.show();
     }
 
 
