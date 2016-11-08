@@ -74,30 +74,35 @@ public class AddContactActivity extends BaseActivity {
     public void searchContact() {
         final String name = etUsername.getText().toString().trim();
 
-            toAddUsername = name;
-            if (TextUtils.isEmpty(name)) {
-                new EaseAlertDialog(this, R.string.Please_enter_a_username).show();
-                return;
-            }
-            progressDialog = new ProgressDialog(this);
-            String stri = getResources().getString(R.string.addcontact_search);
-            progressDialog.setMessage(stri);
-            progressDialog.setCanceledOnTouchOutside(false);
-            progressDialog.show();
-
-            searchAppUser();
+        toAddUsername = name;
+        if (TextUtils.isEmpty(name)) {
+            new EaseAlertDialog(this, R.string.Please_enter_a_username).show();
+            return;
         }
+
+        progressDialog = new ProgressDialog(this);
+        String stri = getResources().getString(R.string.addcontact_search);
+        progressDialog.setMessage(stri);
+        progressDialog.setCanceledOnTouchOutside(false);
+        progressDialog.show();
+        L.e("到这了>>>>>>>>>>>");
+        searchAppUser();
+
+    }
 
     private void searchAppUser() {
         NetDao.searchUser(this, toAddUsername, new OkHttpUtils.OnCompleteListener<String>() {
             @Override
             public void onSuccess(String s) {
+                progressDialog.dismiss();
                 if(s!=null){
-                    Result result= ResultUtils.getResultFromJson(s, User.class);
-                    if(result!=null&&result.isRetMsg()){
+                    Result result = ResultUtils.getResultFromJson(s, User.class);
+                    L.e("result=================="+result);
+                   // L.e(TAG,"searchAppUser,result="+result);
+                    if(result!=null && result.isRetMsg()){
                         User user = (User) result.getRetData();
                         if(user!=null){
-                            L.e("user=========="+user);
+                            L.e("user================="+user);
                             MFGT.gotoNewFriend(AddContactActivity.this,user);
                         }
                     }else {
