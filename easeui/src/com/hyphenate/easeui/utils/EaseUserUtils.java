@@ -110,7 +110,7 @@ public class EaseUserUtils {
     public static void setAppUserNick(String username,TextView textView){
         if(textView != null){
             User user = getAppUserInfo(username);
-            if(user != null && user.getMUserNick() != null){
+            if(user != null && user.getMUserNick()!= null){
                 textView.setText(user.getMUserNick());
             }else{
                 textView.setText(username);

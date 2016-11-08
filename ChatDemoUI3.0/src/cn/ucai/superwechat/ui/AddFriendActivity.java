@@ -91,13 +91,13 @@ public class AddFriendActivity extends BaseActivity {
         }).start();
     }
 
-    @OnClick({R.id.iv_title_back, R.id.iv_txt_right})
+    @OnClick({R.id.iv_title_back, R.id.btn_send})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.iv_title_back:
                 MFGT.finish(this);
                 break;
-            case R.id.iv_txt_right:
+            case R.id.btn_send:
                 sendMsg();
                 break;
         }

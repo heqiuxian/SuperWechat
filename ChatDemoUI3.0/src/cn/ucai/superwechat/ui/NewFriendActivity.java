@@ -15,6 +15,7 @@ import butterknife.OnClick;
 import cn.ucai.superwechat.I;
 import cn.ucai.superwechat.R;
 import cn.ucai.superwechat.SuperWechatHelper;
+import cn.ucai.superwechat.utils.L;
 import cn.ucai.superwechat.utils.MFGT;
 
 public class NewFriendActivity extends BaseActivity {
@@ -55,7 +56,6 @@ public class NewFriendActivity extends BaseActivity {
     private void initView() {
         ivTitleBack.setVisibility(View.VISIBLE);
         tvTitleText.setVisibility(View.VISIBLE);
-        ivTxtRight.setVisibility(View.VISIBLE);
         tvTitleText.setText(R.string.userinfo_txt_profile);
         setUserInfo();
         isFriend();
@@ -84,9 +84,11 @@ public class NewFriendActivity extends BaseActivity {
                 MFGT.finish(this);
                 break;
             case R.id.btn_add_contact:
+                L.e("username=================",user.getMUserName());
                 MFGT.gotoAddFriend(this,user.getMUserName());
                 break;
             case R.id.btn_send_msg:
+                MFGT.gotoChat(this,user.getMUserName());
                 break;
             case R.id.btn_send_video:
                 break;
