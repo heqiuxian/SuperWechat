@@ -5,6 +5,8 @@
     android:background="#f2f2f2"
     android:orientation="vertical" >
 
+    <!--<include layout="@layout/view_title"/>-->
+
     <RelativeLayout
         android:id="@+id/title"
         android:layout_width="match_parent"
