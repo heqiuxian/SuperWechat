@@ -42,7 +42,7 @@ public class EaseUserUtils {
         return null;
     }
 
-    public static User getCurrenAppUserInfo(){
+    public static User getCurrentAppUserInfo(){
         String username=EMClient.getInstance().getCurrentUser();
         if(userProvider != null)
             return userProvider.getAppUser(username);

@@ -35,6 +35,7 @@ import cn.ucai.superwechat.bean.Result;
 import cn.ucai.superwechat.data.NetDao;
 import cn.ucai.superwechat.data.OkHttpUtils;
 import cn.ucai.superwechat.utils.CommonUtils;
+import cn.ucai.superwechat.utils.L;
 import cn.ucai.superwechat.utils.MFGT;
 import cn.ucai.superwechat.utils.ResultUtils;
 
@@ -96,6 +97,7 @@ public class AddContactActivity extends BaseActivity {
                     if(result!=null&&result.isRetMsg()){
                         User user = (User) result.getRetData();
                         if(user!=null){
+                            L.e("user=========="+user);
                             MFGT.gotoNewFriend(AddContactActivity.this,user);
                         }
                     }else {

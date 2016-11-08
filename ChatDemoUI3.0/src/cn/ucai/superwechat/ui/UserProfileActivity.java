@@ -74,7 +74,7 @@ public class UserProfileActivity extends BaseActivity implements OnClickListener
         ButterKnife.bind(this);
         initView();
         initListener();
-        user = EaseUserUtils.getCurrenAppUserInfo();
+        user = EaseUserUtils.getCurrentAppUserInfo();
     }
 
     private void initView() {
