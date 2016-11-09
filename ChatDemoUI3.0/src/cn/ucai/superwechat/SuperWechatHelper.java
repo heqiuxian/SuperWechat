@@ -60,6 +60,7 @@ import com.hyphenate.exceptions.HyphenateException;
 import com.hyphenate.util.EMLog;
 
 import android.app.Activity;
+import android.app.Application;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -1352,5 +1353,9 @@ public class SuperWechatHelper {
         ArrayList<User> mList = new ArrayList<User>();
         mList.addAll(appContactList.values());
         superWechatModel.saveAppContactList(mList);
+    }
+    public void delAppContact(String username){
+        getAppContactList().remove(username);
+        superWechatModel.deleteAppContact(username);
     }
 }
