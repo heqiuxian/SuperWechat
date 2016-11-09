@@ -118,6 +118,7 @@ public class MainActivity extends BaseActivity implements DMTabHost.OnCheckedCha
         // runtime permission for android 6.0, just require all permissions here for simple
         requestPermissions();
         conversationListFragment = new ConversationListFragment();
+        contactListFragment = new ContactListFragment();
         initView();
         umeng();
         checkAccount();
@@ -125,8 +126,8 @@ public class MainActivity extends BaseActivity implements DMTabHost.OnCheckedCha
 
         inviteMessgeDao = new InviteMessgeDao(this);
         UserDao userDao = new UserDao(this);
-        /*contactListFragment = new ContactListFragment();
-        SettingsActivity settingFragment = new SettingsActivity();
+
+        /*SettingsActivity settingFragment = new SettingsActivity();
 		fragments = new Fragment[] { conversationListFragment, contactListFragment, settingFragment};
 
 		getSupportFragmentManager().beginTransaction().add(R.id.fragment_container, conversationListFragment)
@@ -217,8 +218,8 @@ public class MainActivity extends BaseActivity implements DMTabHost.OnCheckedCha
         layoutViewpage.setAdapter(adapter);
         layoutViewpage.setOffscreenPageLimit(4);
         adapter.clear();
-        adapter.addFragment(new ConversationListFragment(), getString(R.string.app_name));
-        adapter.addFragment(new ContactListFragment(), getString(R.string.contacts));
+        adapter.addFragment(conversationListFragment, getString(R.string.app_name));
+        adapter.addFragment(contactListFragment, getString(R.string.contacts));
         adapter.addFragment(new DicoverFragment(), getString(R.string.discover));
         adapter.addFragment(new ProfileFragment(), getString(R.string.me));
         adapter.notifyDataSetChanged();
@@ -322,16 +323,16 @@ public class MainActivity extends BaseActivity implements DMTabHost.OnCheckedCha
             public void onReceive(Context context, Intent intent) {
                 updateUnreadLabel();
                 updateUnreadAddressLable();
-                /*if (currentTabIndex == 0) {
+//                if (currentTabIndex == 0) {
                     // refresh conversation list
                     if (conversationListFragment != null) {
                         conversationListFragment.refresh();
                     }
-                } else*/
-                if (currentTabIndex == 1) {
+//                } else
+//                if (currentTabIndex == 1) {
                     if(contactListFragment != null) {
                         contactListFragment.refresh();
-                    }
+//                    }
                 }
                 String action = intent.getAction();
                 if (action.equals(Constant.ACTION_GROUP_CHANAGED)) {

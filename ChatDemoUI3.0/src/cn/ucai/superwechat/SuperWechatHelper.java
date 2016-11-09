@@ -636,6 +636,7 @@ public class SuperWechatHelper {
                 userDao.saveContact(user);
             }
             toAddUsers.put(username, user);
+            localUsers.putAll(toAddUsers);
 
             Map<String,User> localAppUsers = getAppContactList();
             if(!localAppUsers.containsKey(username)){
