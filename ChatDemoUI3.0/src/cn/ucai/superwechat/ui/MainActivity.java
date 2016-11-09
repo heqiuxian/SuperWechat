@@ -298,6 +298,7 @@ public class MainActivity extends BaseActivity implements DMTabHost.OnCheckedCha
                 updateUnreadLabel();
 				//if (currentTabIndex == 0) {
 					// refresh conversation list
+                //更新消息界面
 					if (conversationListFragment != null) {
 						conversationListFragment.refresh();
 					}
