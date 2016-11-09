@@ -56,6 +56,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import cn.ucai.superwechat.Constant;
+import cn.ucai.superwechat.I;
 import cn.ucai.superwechat.R;
 import cn.ucai.superwechat.SuperWechatHelper;
 import cn.ucai.superwechat.adapter.MainTabAdpter;
@@ -623,6 +624,10 @@ public class MainActivity extends BaseActivity implements DMTabHost.OnCheckedCha
             showConflictDialog();
         } else if (intent.getBooleanExtra(Constant.ACCOUNT_REMOVED, false) && !isAccountRemovedDialogShow) {
             showAccountRemovedDialog();
+        }
+        boolean isBack=intent.getBooleanExtra(I.ACTION_BACK_CONVERSATION,false);
+        if(isBack){
+            layoutTabhost.setChecked(0);
         }
     }
 
