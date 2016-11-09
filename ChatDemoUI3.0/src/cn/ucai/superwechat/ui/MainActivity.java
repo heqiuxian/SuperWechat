@@ -296,14 +296,14 @@ public class MainActivity extends BaseActivity implements DMTabHost.OnCheckedCha
             public void run() {
                 // refresh unread count
                 updateUnreadLabel();
-				/*if (currentTabIndex == 0) {
+				//if (currentTabIndex == 0) {
 					// refresh conversation list
 					if (conversationListFragment != null) {
 						conversationListFragment.refresh();
 					}
-				}*/
+				//}
             }
-        });
+       });
     }
 
     @Override
@@ -439,12 +439,7 @@ public class MainActivity extends BaseActivity implements DMTabHost.OnCheckedCha
      */
     public void updateUnreadLabel() {
         int count = getUnreadMsgCountTotal();
-		/*if (count > 0) {
-			unreadLabel.setText(String.valueOf(count));
-			unreadLabel.setVisibility(View.VISIBLE);
-		} else {
-			unreadLabel.setVisibility(View.INVISIBLE);
-		}*/
+		    layoutTabhost.setUnreadCount(0,count);
     }
 
     /**
