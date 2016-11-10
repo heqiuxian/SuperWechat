@@ -35,6 +35,7 @@
             android:textSize="20sp" />
 
         <Button
+            android:id="@+id/bt_save"
             android:layout_width="60dp"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
@@ -71,6 +72,30 @@
         android:paddingLeft="5dp"
         android:paddingTop="5dp"
         android:textSize="18sp" />
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <EditText
+            android:id="@+id/edit_layout_avatar"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_margin="10dp"
+            android:background="@drawable/em_button_normal_shape"
+            android:hint="群图片"
+            android:paddingLeft="5dp"
+            android:singleLine="true"
+            android:textSize="18sp" />
+        <ImageView
+            android:id="@+id/iv_avatar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:src="@drawable/ease_group_icon"
+            android:layout_marginRight="10dp"
+            />
+
+    </RelativeLayout>
     
     
     <LinearLayout 
