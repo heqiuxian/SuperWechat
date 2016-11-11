@@ -105,7 +105,10 @@ public class NewFriendActivity extends BaseActivity {
     }
 
     private void syncFail() {
-        MFGT.finish(this);
+        if (!isFriend) {
+            MFGT.finish(this);
+            return;
+        }
     }
 
     private void initView() {
