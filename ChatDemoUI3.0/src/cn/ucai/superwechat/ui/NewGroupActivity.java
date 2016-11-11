@@ -76,6 +76,8 @@ public class NewGroupActivity extends BaseActivity {
     private CheckBox memberCheckbox;
     private TextView secondTextView;
 
+    EMGroup emGroup;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -172,7 +174,7 @@ public class NewGroupActivity extends BaseActivity {
                     } else {
                         option.style = memberCheckbox.isChecked() ? EMGroupStyle.EMGroupStylePrivateMemberCanInvite : EMGroupStyle.EMGroupStylePrivateOnlyOwnerInvite;
                     }
-                    EMGroup emGroup = EMClient.getInstance().groupManager().createGroup(groupName, desc, members, reason, option);
+                    emGroup = EMClient.getInstance().groupManager().createGroup(groupName, desc, members, reason, option);
                     emGroup.getGroupId();
                     createAppGroup(emGroup);
 
@@ -235,12 +237,32 @@ public class NewGroupActivity extends BaseActivity {
     }
 
     private void createAppGroupSuccess() {
+        AddGroupMebers(emGroup);
         runOnUiThread(new Runnable() {
             public void run() {
-                CommonUtils.showLongToast("创建成功");
-                progressDialog.dismiss();
                 setResult(RESULT_OK);
                 finish();
+            }
+        });
+    }
+
+    private void AddGroupMebers(EMGroup emGroup) {
+        NetDao.addGroupMebers(this, emGroup, new OkHttpUtils.OnCompleteListener<String>() {
+            @Override
+            public void onSuccess(String s) {
+                if(s!=null){
+                    Result result=ResultUtils.getResultFromJson(s,Group.class);
+                    if(result!=null&&result.isRetMsg()){
+                        CommonUtils.showLongToast("创建群组成功");
+                        progressDialog.dismiss();
+                    }
+                }
+            }
+
+            @Override
+            public void onError(String error) {
+                CommonUtils.showLongToast(getResources().getString(R.string.Failed_to_create_groups));
+                progressDialog.dismiss();
             }
         });
     }
