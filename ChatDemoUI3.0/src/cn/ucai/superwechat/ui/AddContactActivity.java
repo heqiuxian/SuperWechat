@@ -103,7 +103,7 @@ public class AddContactActivity extends BaseActivity {
                         User user = (User) result.getRetData();
                         if(user!=null){
                             L.e("user================="+user);
-                            MFGT.gotoNewFriend(AddContactActivity.this,user);
+                            MFGT.gotoNewFriend(AddContactActivity.this,user.getMUserName());
                         }
                     }else {
                         progressDialog.dismiss();

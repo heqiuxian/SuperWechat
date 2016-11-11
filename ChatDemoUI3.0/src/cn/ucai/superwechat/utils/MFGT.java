@@ -52,10 +52,10 @@ public class MFGT {
     public static void gotoAddFriend(Activity context) {
         startActivity(context, AddContactActivity.class);
     }
-    public static void gotoNewFriend(Activity context, User user) {
+    public static void gotoNewFriend(Activity context,String username) {
         Intent intent=new Intent();
         intent.setClass(context, NewFriendActivity.class);
-        intent.putExtra(I.User.USER_NAME,user);
+        intent.putExtra(I.User.USER_NAME,username);
         startActivity(context,intent);
     }
     public static void gotoAddFriend(Activity context,String username) {
